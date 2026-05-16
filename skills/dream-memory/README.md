@@ -1,8 +1,8 @@
-# dream-memory / 梦境记忆
+# 梦境记忆
 
-`dream-memory` 是本仓库 Memory Lifecycle 的后半段。
+`dream-memory` 是本仓库记忆生命周期的后半段。
 
-它会合并已有 memory 和新候选项，处理重复、过期和检索相关内容，但不会写入真实 memory store。
+它会合并已有记忆和新候选项，处理重复、过期和检索相关内容，但不会写入真实记忆存储。
 
 ## 输出结构
 
@@ -94,4 +94,3 @@ python tools/run_skill_tests.py skills/dream-memory
 - do not modify source code
 
 </details>
-

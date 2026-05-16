@@ -61,8 +61,6 @@ GitHub：
 
 我把 prompt-only 的 AI coding-agent 技能包，整理成了 `schema + runtime + permission + verification + benchmark` 的轻量级 `Agent Skill Bundle System`。
 
-## English
-
 <details>
 <summary>Click to expand English version</summary>
 
@@ -126,4 +124,3 @@ Benefit: gets you the value of proactive behavior without building a dangerous a
 I reorganized prompt-only AI coding-agent skills into a lightweight `Agent Skill Bundle System` with `schema + runtime + permission + verification + benchmark`.
 
 </details>
-

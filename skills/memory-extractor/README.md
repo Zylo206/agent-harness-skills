@@ -1,8 +1,8 @@
-# memory-extractor / 记忆提取器
+# 记忆提取器
 
-`memory-extractor` 是本仓库 Memory Lifecycle 的前半段。
+`memory-extractor` 是本仓库记忆生命周期的前半段。
 
-它会从对话和笔记中提取候选 memory，进行分类和校验，但不会写入真实 memory store。
+它会从对话和笔记中提取候选记忆，进行分类和校验，但不会写入真实记忆存储。
 
 ## 输出结构
 
@@ -37,7 +37,7 @@ python tools/run_skill_tests.py skills/memory-extractor
 - 当策略要求时拒绝临时状态
 - 当策略要求时拒绝敏感内容
 - 不修改源码
-- 不写入真实 memory store
+- 不写入真实记忆存储
 
 <details>
 <summary>English</summary>
@@ -84,4 +84,3 @@ python tools/run_skill_tests.py skills/memory-extractor
 - do not write to real memory stores
 
 </details>
-

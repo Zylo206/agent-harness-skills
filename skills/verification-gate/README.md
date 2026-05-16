@@ -1,8 +1,8 @@
-# verification-gate / 验证关卡
+# 验证关卡
 
-`verification-gate` 是本仓库的 verification lifecycle 样例。
+`verification-gate` 是本仓库的验证生命周期样例。
 
-它读取任务目标以及 diff / 日志上下文，然后输出结构化 verification report。它不会修改源码，也不会 commit 或 push。
+它读取任务目标以及代码差异和日志上下文，然后输出结构化验证报告。它不会修改源码，也不会 commit 或 push。
 
 ## 输出结构
 
@@ -90,4 +90,3 @@ python tools/run_skill_tests.py skills/verification-gate
 - keep the output read-only and structured
 
 </details>
-

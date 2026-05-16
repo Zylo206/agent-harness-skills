@@ -1,19 +1,10 @@
-# Agent Skill Bundle 规范 v0.1
+# 智能体技能包规范 v0.1
 
 ## 概述
 
-Agent Skill Bundle 的目标，是把 prompt-only skill 升级为机器可读、可执行、可验证、可测试的 bundle，让 AI coding agent 可以在不依赖复杂框架的情况下使用。
+智能体技能包的目标，是把提示词型 skill 升级为机器可读、可执行、可验证、可测试的 bundle，让 AI 编码智能体可以在不依赖复杂框架的情况下使用。
 
-bundle 保留原有自然语言 skill 入口，同时补充元数据、schema 校验、runtime 执行、权限边界和 benchmark case 的结构化契约。
-
-<details>
-<summary>English</summary>
-
-The goal of an Agent Skill Bundle is to upgrade a prompt-only skill into a machine-readable, executable, verifiable, and testable bundle that can be used by AI coding agents without depending on a heavy agent framework.
-
-The bundle keeps the existing natural-language skill entrypoint, but adds a structured contract for metadata, schema validation, runtime execution, permission boundaries, and benchmark cases.
-
-</details>
+bundle 保留原有自然语言 skill 入口，同时补充元数据、结构校验、运行脚本、权限边界和基准测试样例的结构化契约。
 
 ## 标准目录结构
 
@@ -36,25 +27,11 @@ skills/<skill-name>/
 
 ### `SKILL.md`
 
-给 AI agent 阅读的自然语言行为说明。它仍然是 Claude Code、Codex 和 OpenClaw 的兼容层。
-
-<details>
-<summary>English</summary>
-
-Natural-language behavior instructions for the AI agent. This remains the compatibility layer for Claude Code, Codex, and OpenClaw.
-
-</details>
+给 AI 智能体阅读的自然语言行为说明。它仍然是 Claude Code、Codex 和 OpenClaw 的兼容层。
 
 ### `README.md`
 
 给人类阅读的使用说明、示例命令和 skill 生命周期简介。
-
-<details>
-<summary>English</summary>
-
-Human-readable bundle usage notes, example commands, and a short description of the skill lifecycle.
-
-</details>
 
 ### `skill.yaml`
 
@@ -72,79 +49,25 @@ Human-readable bundle usage notes, example commands, and a short description of 
 - `verification`
 - `benchmark`
 
-<details>
-<summary>English</summary>
-
-Machine-readable metadata for:
-
-- `name`
-- `version`
-- `description`
-- `category`
-- `trigger`
-- `runtime`
-- `inputs`
-- `outputs`
-- `permissions`
-- `verification`
-- `benchmark`
-
-</details>
-
 ### `schemas/input.schema.json`
 
-定义 runtime 接受的 JSON 输入，并由 runner 用于校验。
-
-<details>
-<summary>English</summary>
-
-Defines the JSON input accepted by the runtime and is used by the runner for validation.
-
-</details>
+定义运行脚本接受的 JSON 输入，并由运行器用于校验。
 
 ### `schemas/output.schema.json`
 
-定义 runtime 输出的 JSON 结构，并由 runner 用于校验。
-
-<details>
-<summary>English</summary>
-
-Defines the JSON output emitted by the runtime and is used by the runner for validation.
-
-</details>
+定义运行脚本输出的 JSON 结构，并由运行器用于校验。
 
 ### `scripts/run.py`
 
-最小可执行 runtime。它读取 `input.json`，进行规则化处理，并输出结构化 JSON。
-
-<details>
-<summary>English</summary>
-
-The minimal executable runtime. It reads `input.json`, performs rule-based processing, and emits structured JSON.
-
-</details>
+最小可执行运行脚本。它读取 `input.json`，进行规则化处理，并输出结构化 JSON。
 
 ### `tests/cases/`
 
-skill 的 benchmark 输入样例。
-
-<details>
-<summary>English</summary>
-
-Benchmark input samples for the skill.
-
-</details>
+skill 的基准测试输入样例。
 
 ### `tests/expected/`
 
 每个 case 的关键期望输出。它们不是完整 JSON 快照，而是用于断言的关键字段。
-
-<details>
-<summary>English</summary>
-
-Key expected output fields for each case. These are not full JSON snapshots; they are the important assertions for the bundle.
-
-</details>
 
 ## `skill.yaml` 规范
 
@@ -167,47 +90,14 @@ Key expected output fields for each case. These are not full JSON snapshots; the
 - `name`：稳定的 bundle 名称。
 - `version`：bundle 版本，行为变化时更新。
 - `description`：简短的人类可读描述。
-- `category`：分组标签，例如 verification、context-management、coordination、memory-lifecycle、proactive-job-lifecycle。
+- `category`：分组标签，例如验证、上下文管理、协作协调、记忆生命周期、主动任务生命周期。
 - `trigger`：skill 何时应被触发。
 - `runtime`：bundle 的执行方式。
 - `inputs`：必填和可选输入。
 - `outputs`：输出格式和 schema 引用。
-- `permissions`：声明式 read / execute / write / forbidden 边界。
+- `permissions`：声明式读取 / 执行 / 写入 / 禁止边界。
 - `verification`：bundle 需要满足的验证项。
 - `benchmark`：数据集位置和评估指标。
-
-<details>
-<summary>English</summary>
-
-Recommended fields:
-
-- `name`
-- `version`
-- `description`
-- `category`
-- `trigger`
-- `runtime`
-- `inputs`
-- `outputs`
-- `permissions`
-- `verification`
-- `benchmark`
-
-Field meaning:
-
-- `name`: stable bundle name.
-- `version`: bundle version, updated when behavior changes.
-- `description`: short human-readable summary.
-- `category`: grouping label such as verification, context-management, coordination, memory-lifecycle, or proactive-job-lifecycle.
-- `trigger`: when the skill should be considered.
-- `runtime`: how to execute the bundle.
-- `inputs`: required and optional inputs.
-- `outputs`: output format and schema reference.
-- `permissions`: declared read / execute / write / forbidden boundary.
-- `verification`: required checks the bundle should satisfy.
-- `benchmark`: dataset location and evaluation metrics.
-
-</details>
 
 ## 权限模型
 
@@ -225,28 +115,9 @@ permissions:
 
 这些列表分别表示 skill 可以读取什么、可以尝试执行什么、可以写什么、以及绝对不能做什么。
 
-<details>
-<summary>English</summary>
-
-`permissions` is declarative. It documents intent and guardrails, but it is not a full sandbox.
-
-Recommended structure:
-
-```yaml
-permissions:
-  read: []
-  execute: []
-  write: []
-  forbidden: []
-```
-
-The lists describe what the skill may inspect, what it may attempt to execute, what it may write, and what it must not do.
-
-</details>
-
 ## Runtime 契约
 
-runtime script 必须：
+运行脚本必须：
 
 - 从 `input.json` 读取输入
 - 输出符合 `schemas/output.schema.json` 的 JSON
@@ -255,40 +126,14 @@ runtime script 必须：
 - 遇到非法输入、文件缺失或 JSON 解析失败时返回非零 exit code
 - 不得 commit 或 push 代码
 
-在本仓库中，runtime 是刻意保持轻量且本地化的。当前这些 skill 是基于规则的 bundle runtime，不是自治后台 agent。
-
-<details>
-<summary>English</summary>
-
-The runtime script must:
-
-- read the input from `input.json`
-- emit JSON that matches `schemas/output.schema.json`
-- avoid external services unless the skill explicitly allows them
-- avoid modifying source code unless the skill explicitly allows it
-- return a non-zero exit code on invalid input, missing files, or malformed JSON
-- never commit or push code
-
-In this repository, the runtime is intentionally lightweight and local. The current skills are rule-based bundle runtimes, not autonomous background agents.
-
-</details>
+在本仓库中，运行脚本是刻意保持轻量且本地化的。当前这些 skill 是基于规则的 bundle runtime，不是自治后台智能体。
 
 ## Schema 契约
 
-- `schemas/input.schema.json` 用于校验 runtime 输入。
-- `schemas/output.schema.json` 用于校验 runtime 输出。
-- 如果 `jsonschema` 不可用，runner 应该给出 warning 并继续运行。
+- `schemas/input.schema.json` 用于校验运行脚本输入。
+- `schemas/output.schema.json` 用于校验运行脚本输出。
+- 如果 `jsonschema` 不可用，运行器应该给出 warning 并继续运行。
 - schema 应尽量稳定，避免频繁破坏兼容。
-
-<details>
-<summary>English</summary>
-
-- `schemas/input.schema.json` validates the runtime input.
-- `schemas/output.schema.json` validates the runtime output.
-- The runner should warn and continue if `jsonschema` is unavailable.
-- Schemas should be stable enough to support incremental skill evolution without breaking compatibility too often.
-
-</details>
 
 ## Benchmark 契约
 
@@ -303,22 +148,6 @@ benchmark 目录提供了 skill bundle 的最小评估面。
   - 嵌套 key 访问，例如 `summary.extracted_count`
   - `_min` 断言，例如 `summary.extracted_count_min`
 
-<details>
-<summary>English</summary>
-
-The benchmark folder provides the minimal evaluation surface for a skill bundle.
-
-- `tests/cases/*.input.json` are the benchmark inputs
-- `tests/expected/*.expected.json` are the key expected outputs
-- expected files do not need to match the full runtime output
-- the batch runner supports:
-  - exact field matching
-  - `_non_empty` assertions
-  - nested key access such as `summary.extracted_count`
-  - `_min` assertions such as `summary.extracted_count_min`
-
-</details>
-
 ## 生命周期分类
 
 本仓库当前使用六类 lifecycle：
@@ -330,34 +159,11 @@ The benchmark folder provides the minimal evaluation surface for a skill bundle.
 - memory merge / expire / retrieve
 - proactive job lifecycle
 
-<details>
-<summary>English</summary>
-
-The repository currently uses six lifecycle categories:
-
-- verification lifecycle
-- context snapshot lifecycle
-- coordination lifecycle
-- memory extract / classify / validate
-- memory merge / expire / retrieve
-- proactive job lifecycle
-
-</details>
-
 ## 向后兼容
 
 `SKILL.md` 会继续保留，并保持与 Claude Code、Codex、OpenClaw 的原有 skill 使用方式兼容。
 
 新增的 bundle 文件是增强层，不是替代层。
-
-<details>
-<summary>English</summary>
-
-`SKILL.md` remains in place and keeps the existing skill usage flow compatible with Claude Code, Codex, and OpenClaw.
-
-The new bundle files are an enhancement layer, not a replacement layer.
-
-</details>
 
 ## 新增 Skill 的流程
 
@@ -371,24 +177,6 @@ The new bundle files are an enhancement layer, not a replacement layer.
 8. 添加 `tests/expected/`
 9. 更新该 skill 的 `README.md`
 10. 运行 `python tools/run_skill_tests.py skills/<skill-name>`
-
-<details>
-<summary>English</summary>
-
-Checklist:
-
-1. Create `skills/<skill-name>/`
-2. Write or preserve `SKILL.md`
-3. Add `skill.yaml`
-4. Add `schemas/input.schema.json`
-5. Add `schemas/output.schema.json`
-6. Add `scripts/run.py`
-7. Add `tests/cases/`
-8. Add `tests/expected/`
-9. Update the skill `README.md`
-10. Run `python tools/run_skill_tests.py skills/<skill-name>`
-
-</details>
 
 ## 生命周期说明
 
@@ -404,11 +192,11 @@ Checklist:
 
 用于输出有边界的 worker 计划和交接规则。
 
-### memory extract / classify / validate
+### 记忆提取、分类与校验
 
 用于从对话或笔记中提取候选 memory。
 
-### memory merge / expire / retrieve
+### 记忆合并、过期与检索
 
 用于合并 memory、清理过期项，并支持检索。
 
@@ -418,6 +206,188 @@ Checklist:
 
 <details>
 <summary>English</summary>
+
+# Agent Skill Bundle Specification v0.1
+
+## Overview
+
+The goal of an Agent Skill Bundle is to upgrade a prompt-only skill into a machine-readable, executable, verifiable, and testable bundle that can be used by AI coding agents without depending on a heavy agent framework.
+
+The bundle keeps the existing natural-language skill entrypoint, but adds a structured contract for metadata, schema validation, runtime execution, permission boundaries, and benchmark cases.
+
+## Standard Directory Layout
+
+```text
+skills/<skill-name>/
+  SKILL.md
+  README.md
+  skill.yaml
+  schemas/
+    input.schema.json
+    output.schema.json
+  scripts/
+    run.py
+  tests/
+    cases/
+    expected/
+```
+
+## Required Files
+
+### `SKILL.md`
+
+Natural-language behavior instructions for the AI agent. This remains the compatibility layer for Claude Code, Codex, and OpenClaw.
+
+### `README.md`
+
+Human-readable bundle usage notes, example commands, and a short description of the skill lifecycle.
+
+### `skill.yaml`
+
+Machine-readable metadata for:
+
+- `name`
+- `version`
+- `description`
+- `category`
+- `trigger`
+- `runtime`
+- `inputs`
+- `outputs`
+- `permissions`
+- `verification`
+- `benchmark`
+
+### `schemas/input.schema.json`
+
+Defines the JSON input accepted by the runtime and is used by the runner for validation.
+
+### `schemas/output.schema.json`
+
+Defines the JSON output emitted by the runtime and is used by the runner for validation.
+
+### `scripts/run.py`
+
+The minimal executable runtime. It reads `input.json`, performs rule-based processing, and emits structured JSON.
+
+### `tests/cases/`
+
+Benchmark input samples for the skill.
+
+### `tests/expected/`
+
+Key expected output fields for each case. These are not full JSON snapshots; they are the important assertions for the bundle.
+
+## `skill.yaml` Specification
+
+Recommended fields:
+
+- `name`
+- `version`
+- `description`
+- `category`
+- `trigger`
+- `runtime`
+- `inputs`
+- `outputs`
+- `permissions`
+- `verification`
+- `benchmark`
+
+### Field Meaning
+
+- `name`: stable bundle name.
+- `version`: bundle version, updated when behavior changes.
+- `description`: short human-readable summary.
+- `category`: grouping label such as verification, context-management, coordination, memory-lifecycle, or proactive-job-lifecycle.
+- `trigger`: when the skill should be considered.
+- `runtime`: how to execute the bundle.
+- `inputs`: required and optional inputs.
+- `outputs`: output format and schema reference.
+- `permissions`: declared read / execute / write / forbidden boundary.
+- `verification`: required checks the bundle should satisfy.
+- `benchmark`: dataset location and evaluation metrics.
+
+## Permission Model
+
+`permissions` is declarative. It documents intent and guardrails, but it is not a full sandbox.
+
+Recommended structure:
+
+```yaml
+permissions:
+  read: []
+  execute: []
+  write: []
+  forbidden: []
+```
+
+The lists describe what the skill may inspect, what it may attempt to execute, what it may write, and what it must not do.
+
+## Runtime Contract
+
+The runtime script must:
+
+- read the input from `input.json`
+- emit JSON that matches `schemas/output.schema.json`
+- avoid external services unless the skill explicitly allows them
+- avoid modifying source code unless the skill explicitly allows it
+- return a non-zero exit code on invalid input, missing files, or malformed JSON
+- never commit or push code
+
+In this repository, the runtime is intentionally lightweight and local. The current skills are rule-based bundle runtimes, not autonomous background agents.
+
+## Schema Contract
+
+- `schemas/input.schema.json` validates the runtime input.
+- `schemas/output.schema.json` validates the runtime output.
+- The runner should warn and continue if `jsonschema` is unavailable.
+- Schemas should be stable enough to support incremental skill evolution without breaking compatibility too often.
+
+## Benchmark Contract
+
+The benchmark folder provides the minimal evaluation surface for a skill bundle.
+
+- `tests/cases/*.input.json` are the benchmark inputs
+- `tests/expected/*.expected.json` are the key expected outputs
+- expected files do not need to match the full runtime output
+- the batch runner supports:
+  - exact field matching
+  - `_non_empty` assertions
+  - nested key access such as `summary.extracted_count`
+  - `_min` assertions such as `summary.extracted_count_min`
+
+## Lifecycle Categories
+
+The repository currently uses six lifecycle categories:
+
+- verification lifecycle
+- context snapshot lifecycle
+- coordination lifecycle
+- memory extract / classify / validate
+- memory merge / expire / retrieve
+- proactive job lifecycle
+
+## Backward Compatibility
+
+`SKILL.md` remains in place and keeps the existing skill usage flow compatible with Claude Code, Codex, and OpenClaw.
+
+The new bundle files are an enhancement layer, not a replacement layer.
+
+## Adding a New Skill
+
+1. Create `skills/<skill-name>/`
+2. Write or preserve `SKILL.md`
+3. Add `skill.yaml`
+4. Add `schemas/input.schema.json`
+5. Add `schemas/output.schema.json`
+6. Add `scripts/run.py`
+7. Add `tests/cases/`
+8. Add `tests/expected/`
+9. Update the skill `README.md`
+10. Run `python tools/run_skill_tests.py skills/<skill-name>`
+
+## Lifecycle Notes
 
 ### verification lifecycle
 
@@ -444,4 +414,3 @@ Use when the skill must consolidate memory items, remove stale items, and answer
 Use when the skill must plan a bounded proactive job with schedule, permission, expiry, and a brief.
 
 </details>
-

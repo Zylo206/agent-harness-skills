@@ -1,8 +1,8 @@
-# swarm-coordinator / 多 Agent 协调器
+# 多智能体协调器
 
-`swarm-coordinator` 是本仓库的 coordination lifecycle 样例。
+`swarm-coordinator` 是本仓库的协调生命周期样例。
 
-它会生成结构化的多 Agent 任务计划，包括有边界的 worker、交接规则、验收标准和验证计划，但不会真的启动并行 agent。
+它会生成结构化的多智能体任务计划，包括有边界的分工、交接规则、验收标准和验证计划，但不会真的启动并行智能体。
 
 ## 输出结构
 
@@ -90,4 +90,3 @@ python tools/run_skill_tests.py skills/swarm-coordinator
 - do not modify source code
 
 </details>
-

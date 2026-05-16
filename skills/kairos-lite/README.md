@@ -1,8 +1,8 @@
-# kairos-lite / 轻量主动任务
+# 轻量主动任务
 
-`kairos-lite` 是本仓库的 proactive job lifecycle 样例。
+`kairos-lite` 是本仓库的主动任务生命周期样例。
 
-它会规划轻量 proactive job，并提供 schedule、权限边界、brief 输出和 expiry 控制。但它不是后台 daemon，也不会真正执行任务。
+它会规划轻量主动任务，并提供调度、权限边界、摘要输出和过期控制。但它不是后台守护进程，也不会真正执行任务。
 
 ## 输出结构
 
@@ -100,4 +100,3 @@ python tools/run_skill_tests.py skills/kairos-lite
 - no shell execution, commit, or push
 
 </details>
-

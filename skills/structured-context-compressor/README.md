@@ -1,8 +1,8 @@
-# structured-context-compressor / 结构化上下文压缩器
+# 结构化上下文压缩器
 
-`structured-context-compressor` 是本仓库的 context snapshot lifecycle 样例。
+`structured-context-compressor` 是本仓库的上下文快照生命周期样例。
 
-它会把长对话历史整理成结构化 task snapshot，方便后续恢复，并尽量保留约束、失败尝试和下一步。
+它会把长对话历史整理成结构化任务快照，方便后续恢复，并尽量保留约束、失败尝试和下一步。
 
 ## 输出结构
 
@@ -90,4 +90,3 @@ python tools/run_skill_tests.py skills/structured-context-compressor
 - do not execute shell commands
 
 </details>
-
