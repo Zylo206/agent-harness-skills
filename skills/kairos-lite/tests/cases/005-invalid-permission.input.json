@@ -1,0 +1,8 @@
+{
+  "job_goal": "Check repository status with an unsupported permission level.",
+  "permission_level": "superuser",
+  "schedule": {
+    "type": "manual",
+    "value": "manual"
+  }
+}

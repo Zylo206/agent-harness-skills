@@ -17,7 +17,7 @@
 
 GitHub:
 
-- `LearnPrompt/cc-harness-skills`
+- `LearnPrompt/agent-harness-skills`
 
 ## 六个 Skill 的一句话用法和好处
 

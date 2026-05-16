@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "existing_memories",
+    "memory_candidates"
+  ],
+  "properties": {
+    "existing_memories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/memory_item"
+      }
+    },
+    "memory_candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/memory_item"
+      }
+    },
+    "current_date": {
+      "type": "string"
+    },
+    "merge_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "merge_duplicates": {
+          "type": "boolean",
+          "default": true
+        },
+        "expire_short_term": {
+          "type": "boolean",
+          "default": true
+        },
+        "detect_conflicts": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "retrieval_query": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "memory_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "content",
+        "source",
+        "confidence",
+        "lifespan",
+        "status",
+        "tags",
+        "created_at",
+        "updated_at",
+        "expires_at",
+        "reason"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "user_preference",
+            "project_context",
+            "workflow_preference",
+            "technical_constraint",
+            "feedback",
+            "reference",
+            "temporary_state",
+            "rejected"
+          ]
+        },
+        "content": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "lifespan": {
+          "type": "string",
+          "enum": [
+            "short_term",
+            "medium_term",
+            "long_term"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "candidate",
+            "rejected",
+            "expired",
+            "conflict"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updated_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "expires_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

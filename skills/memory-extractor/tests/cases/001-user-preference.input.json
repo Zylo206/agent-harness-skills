@@ -1,0 +1,8 @@
+{
+  "conversation": [
+    {
+      "role": "user",
+      "content": "以后回答我的技术问题时，优先给我可直接复制给 Claude Code 的 prompt。"
+    }
+  ]
+}

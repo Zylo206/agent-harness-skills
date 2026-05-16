@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "job_goal",
+    "job_status",
+    "lifecycle_stage",
+    "schedule",
+    "permission_level",
+    "allowed_actions",
+    "forbidden_actions",
+    "requires_user_approval",
+    "execution_mode",
+    "job_plan",
+    "brief",
+    "expiry",
+    "is_expired",
+    "risks",
+    "next_step"
+  ],
+  "properties": {
+    "job_goal": {
+      "type": "string"
+    },
+    "job_status": {
+      "type": "string",
+      "enum": [
+        "PLANNED",
+        "BLOCKED",
+        "EXPIRED",
+        "REQUIRES_APPROVAL",
+        "INVALID"
+      ]
+    },
+    "lifecycle_stage": {
+      "type": "string",
+      "enum": [
+        "schedule",
+        "permission",
+        "draft",
+        "brief",
+        "expire"
+      ]
+    },
+    "schedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "one_time",
+            "recurring",
+            "manual"
+          ]
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "permission_level": {
+      "type": "string",
+      "enum": [
+        "observe",
+        "suggest",
+        "draft",
+        "execute"
+      ]
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requires_user_approval": {
+      "type": "boolean"
+    },
+    "execution_mode": {
+      "type": "string",
+      "enum": [
+        "plan_only"
+      ]
+    },
+    "job_plan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "brief": {
+      "type": "string"
+    },
+    "expiry": {
+      "type": "string"
+    },
+    "is_expired": {
+      "type": "boolean"
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_step": {
+      "type": "string"
+    }
+  }
+}

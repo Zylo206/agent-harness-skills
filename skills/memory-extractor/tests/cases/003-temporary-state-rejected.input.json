@@ -1,0 +1,13 @@
+{
+  "conversation": [
+    {
+      "role": "user",
+      "content": "我现在正在跑第一个测试，这一步先不要记成长期记忆。"
+    }
+  ],
+  "extraction_policy": {
+    "allow_sensitive_memory": false,
+    "prefer_long_term": true,
+    "reject_temporary_state": true
+  }
+}

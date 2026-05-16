@@ -1,0 +1,9 @@
+{
+  "job_goal": "Draft a weekly summary of open verification failures.",
+  "permission_level": "draft",
+  "allowed_actions": [
+    "read_reports",
+    "draft_summary"
+  ],
+  "requires_user_approval": true
+}

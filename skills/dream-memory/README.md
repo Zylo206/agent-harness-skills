@@ -1,35 +1,83 @@
-# CC Dream Memory
+# dream-memory / 梦境记忆
 
-`dream-memory` is a portable memory-consolidation skill for coding agents.
+`dream-memory` is the second half of the Memory Lifecycle in this repository.
 
-It turns recent logs, session transcripts, and existing memory files into a shorter, more stable long-term memory set. The workflow is inspired by the public `CC` dream-style memory pass, but rewritten to avoid private runtime dependencies.
+`dream-memory` 是本仓库 Memory Lifecycle 的后半段。
 
-## Best For
+It consolidates existing memories and new candidates by merging duplicates, expiring stale items, and retrieving relevant memories. It does not write to a real memory store.
 
-- nightly memory cleanup
-- merging duplicate memory notes
-- converting relative dates to absolute dates
-- keeping `MEMORY.md` short and prompt-friendly
+它会合并已有 memory 和新候选项，处理重复、过期和检索相关内容，但不会写入真实 memory store。
 
-## Included Files
+## Output Shape / 输出结构
 
-- `SKILL.md`
-- `references/prompt-template.md`
-- `references/source-notes.md`
-- `scripts/dream_memory.py`
+The runtime emits JSON with:
 
-## Quick Start
-
-```bash
-python3 ./scripts/dream_memory.py \
-  --memory-root /path/to/memory \
-  --transcripts-dir /path/to/transcripts
+```json
+{
+  "active_memories": [],
+  "merged_memories": [],
+  "expired_memories": [],
+  "conflicts": [],
+  "retrieved_memories": [],
+  "summary": {
+    "active_count": 0,
+    "merged_count": 0,
+    "expired_count": 0,
+    "conflict_count": 0,
+    "retrieved_count": 0
+  }
+}
 ```
 
-Then apply the workflow in `SKILL.md` with the prompt template in `references/prompt-template.md`.
+runtime 输出的 JSON 包含：
 
-## Host Fit
+```json
+{
+  "active_memories": [],
+  "merged_memories": [],
+  "expired_memories": [],
+  "conflicts": [],
+  "retrieved_memories": [],
+  "summary": {
+    "active_count": 0,
+    "merged_count": 0,
+    "expired_count": 0,
+    "conflict_count": 0,
+    "retrieved_count": 0
+  }
+}
+```
 
-- Claude Code: strong fit
-- Codex: strong fit
-- OpenClaw: strong fit
+## Usage / 使用方式
+
+Single run:
+
+```powershell
+python tools/skill_runner.py skills/dream-memory skills/dream-memory/tests/cases/001-merge-duplicates.input.json
+```
+
+单个运行：
+
+```powershell
+python tools/skill_runner.py skills/dream-memory skills/dream-memory/tests/cases/001-merge-duplicates.input.json
+```
+
+Batch tests:
+
+```powershell
+python tools/run_skill_tests.py skills/dream-memory
+```
+
+批量测试：
+
+```powershell
+python tools/run_skill_tests.py skills/dream-memory
+```
+
+## Safety Boundary / 安全边界
+
+- merge duplicates instead of silently copying them / 合并重复项，而不是静默复制
+- expire stale items instead of keeping them forever / 让过期项失效，而不是永久保留
+- detect conflicts instead of overwriting them / 检测冲突，而不是静默覆盖
+- do not modify source code / 不修改源码
+

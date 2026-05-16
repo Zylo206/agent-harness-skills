@@ -1,0 +1,78 @@
+{
+  "name": "structured-context-compressor",
+  "version": "0.2.0",
+  "description": "Generate a structured task snapshot from long agent conversations or task logs.",
+  "category": "context-management",
+  "trigger": {
+    "when": [
+      "long_context_detected",
+      "before_context_compaction",
+      "before_handoff",
+      "before_session_resume"
+    ],
+    "avoid": [
+      "short_single_turn_task",
+      "no_task_context_available"
+    ]
+  },
+  "runtime": {
+    "type": "script",
+    "language": "python",
+    "entry": "scripts/run.py"
+  },
+  "inputs": {
+    "required": [
+      "conversation"
+    ],
+    "optional": [
+      "task_goal",
+      "changed_files",
+      "artifacts",
+      "failed_attempts",
+      "user_constraints",
+      "current_state",
+      "pending_tasks"
+    ]
+  },
+  "outputs": {
+    "format": "json",
+    "schema": "schemas/output.schema.json"
+  },
+  "permissions": {
+    "read": [
+      "conversation_history",
+      "task_notes",
+      "changed_files",
+      "artifacts"
+    ],
+    "execute": [],
+    "write": [
+      "context_snapshot"
+    ],
+    "forbidden": [
+      "modify_source_code",
+      "delete_files",
+      "commit_code",
+      "push_code",
+      "execute_shell_commands"
+    ]
+  },
+  "verification": {
+    "required_checks": [
+      "primary_request_extracted",
+      "user_constraints_preserved",
+      "failed_attempts_preserved",
+      "next_step_assigned",
+      "output_schema_valid"
+    ]
+  },
+  "benchmark": {
+    "dataset": "tests/cases",
+    "metrics": [
+      "output_schema_validity",
+      "constraint_retention_rate",
+      "failed_attempt_retention_rate",
+      "next_step_quality"
+    ]
+  }
+}

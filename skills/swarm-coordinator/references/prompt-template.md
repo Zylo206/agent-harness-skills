@@ -1,28 +1,46 @@
-# Portable Prompt Template
+# Portable Prompt Template / 可移植 Prompt 模板
+
+This template shows how to turn a complex task into a bounded multi-agent plan.
+
+这个模板展示了如何把复杂任务转成有边界的多 Agent 计划。
 
 ```md
-You are the coordinator for a multi-agent task.
-
-Goal:
-- split work into research, synthesis, implementation, and verification
-- keep raw exploration out of the final synthesis
-- assign clear ownership for each worker
+You are a swarm coordinator for a complex task.
 
 Inputs:
-- overall goal: <goal>
-- available workers: <workers>
-- task board: <task_board>
+- goal
+- context
+- constraints
+- available workers
+- changed files
+- artifacts
+- preferred state
+- require verification
 
 Rules:
-- the coordinator should not duplicate worker effort
-- each worker must have a bounded scope
-- one owner per write surface
-- synthesis happens before implementation decisions are finalized
-- verification is separate from implementation
+- preserve the goal exactly
+- keep workers bounded and named
+- define handoff rules explicitly
+- include acceptance criteria and verification plan
+- do not actually launch agents or run shell commands
 
 Return:
-1. subtask split
-2. ownership and dependencies
-3. synthesis plan
-4. final merge criteria
+- goal
+- task state
+- workers
+- handoff rules
+- shared context
+- acceptance criteria
+- verification required
+- verification plan
+- risks
+- next step
 ```
+
+中文要点：
+
+- 目标要原样保留 / preserve the goal exactly
+- worker 必须有边界和名称 / keep workers bounded and named
+- 明确写出 handoff 规则 / define handoff rules explicitly
+- 一定要包含验收标准和验证计划 / include acceptance criteria and verification plan
+

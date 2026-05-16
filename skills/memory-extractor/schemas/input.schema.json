@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "conversation"
+  ],
+  "properties": {
+    "conversation": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "content"
+        ],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "user",
+              "assistant",
+              "system",
+              "tool"
+            ]
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "task_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "existing_memories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/memory_item"
+      }
+    },
+    "extraction_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allow_sensitive_memory": {
+          "type": "boolean",
+          "default": false
+        },
+        "prefer_long_term": {
+          "type": "boolean",
+          "default": true
+        },
+        "reject_temporary_state": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    },
+    "current_date": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "memory_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "content",
+        "source",
+        "confidence",
+        "lifespan",
+        "status",
+        "tags",
+        "created_at",
+        "updated_at",
+        "expires_at",
+        "reason"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "user_preference",
+            "project_context",
+            "workflow_preference",
+            "technical_constraint",
+            "feedback",
+            "reference",
+            "temporary_state",
+            "rejected"
+          ]
+        },
+        "content": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "lifespan": {
+          "type": "string",
+          "enum": [
+            "short_term",
+            "medium_term",
+            "long_term"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "candidate",
+            "rejected",
+            "expired",
+            "conflict"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updated_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "expires_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

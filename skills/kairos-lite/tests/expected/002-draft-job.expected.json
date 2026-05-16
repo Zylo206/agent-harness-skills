@@ -1,0 +1,6 @@
+{
+  "job_plan_non_empty": true,
+  "brief_non_empty": true,
+  "permission_level": "draft",
+  "requires_user_approval": true
+}

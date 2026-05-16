@@ -1,0 +1,22 @@
+{
+  "task_goal": "Upgrade structured-context-compressor into a structured task snapshot generator.",
+  "conversation": [
+    {
+      "role": "user",
+      "content": "Please turn structured-context-compressor into a schema-driven task snapshot generator."
+    },
+    {
+      "role": "assistant",
+      "content": "I will add skill.yaml, schemas, runtime, tests, and README updates."
+    },
+    {
+      "role": "user",
+      "content": "Keep compatibility with Claude Code, Codex, and OpenClaw."
+    }
+  ],
+  "changed_files": [
+    "skills/structured-context-compressor/SKILL.md",
+    "skills/verification-gate/README.md"
+  ],
+  "current_state": "Prompt-only skill ready to be upgraded."
+}

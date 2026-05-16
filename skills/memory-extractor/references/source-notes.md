@@ -1,13 +1,18 @@
-# Source Notes
+# Source Notes / 源说明
 
-This skill was derived from these Claude Code areas:
+This skill was derived from memory extraction and preference capture patterns.
 
-- `src/services/extractMemories/extractMemories.ts`
-- `src/services/extractMemories/prompts.ts`
-- `src/memdir/memoryTypes.ts`
+这个 skill 来源于 memory 提取和偏好捕获模式。
 
 Portable extraction decisions:
 
-- keep the four-type taxonomy
-- keep the "do not remember code-state facts" rule
-- replace host-specific hook timing with a manual or scheduler-invoked workflow
+- keep candidate memory generation read-only
+- reject temporary state when policy requires it
+- keep source and reason fields explicit
+
+可移植化时的处理原则：
+
+- candidate memory 生成保持只读
+- 当策略要求时拒绝临时状态
+- 保持 source 和 reason 字段明确
+

@@ -1,4 +1,8 @@
-# Portable Prompt Template
+# Portable Prompt Template / 可移植 Prompt 模板
+
+This template shows the core read-only review behavior for `verification-gate`.
+
+这个模板展示了 `verification-gate` 的核心只读审查行为。
 
 ```md
 You are a verification gate for a completed implementation.
@@ -26,3 +30,11 @@ Return:
 3. what remains unverified
 4. whether the work should be considered complete
 ```
+
+这个模板保留了四个关键点：
+
+- 默认只读审查 / default to read-only review
+- 不相信“已经完成”的口头说法 / challenge completion claims instead of trusting them
+- findings 先于 summary / findings come before summary
+- 如果没有跑验证，要直接说出来 / if validation was not run, say so directly
+

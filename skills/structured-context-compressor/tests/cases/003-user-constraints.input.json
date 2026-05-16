@@ -1,0 +1,18 @@
+{
+  "conversation": [
+    {
+      "role": "user",
+      "content": "不要改其他 skill。必须保留 SKILL.md。只做 structured-context-compressor。"
+    },
+    {
+      "role": "assistant",
+      "content": "Understood. I will keep the scope limited and preserve the existing prompt file."
+    }
+  ],
+  "user_constraints": [
+    "不要改其他 skill。",
+    "必须保留 SKILL.md。",
+    "只做 structured-context-compressor。"
+  ],
+  "current_state": "Waiting for the structured context snapshot."
+}

@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "active_memories",
+    "merged_memories",
+    "expired_memories",
+    "conflicts",
+    "retrieved_memories",
+    "summary"
+  ],
+  "properties": {
+    "active_memories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/memory_item"
+      }
+    },
+    "merged_memories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/memory_item"
+      }
+    },
+    "expired_memories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/memory_item"
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "existing_id",
+          "candidate_id",
+          "reason"
+        ],
+        "properties": {
+          "existing_id": {
+            "type": "string"
+          },
+          "candidate_id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "retrieved_memories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/memory_item"
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_count",
+        "merged_count",
+        "expired_count",
+        "conflict_count",
+        "retrieved_count"
+      ],
+      "properties": {
+        "active_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "merged_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expired_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "conflict_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retrieved_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "$defs": {
+    "memory_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "content",
+        "source",
+        "confidence",
+        "lifespan",
+        "status",
+        "tags",
+        "created_at",
+        "updated_at",
+        "expires_at",
+        "reason"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "user_preference",
+            "project_context",
+            "workflow_preference",
+            "technical_constraint",
+            "feedback",
+            "reference",
+            "temporary_state",
+            "rejected"
+          ]
+        },
+        "content": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "lifespan": {
+          "type": "string",
+          "enum": [
+            "short_term",
+            "medium_term",
+            "long_term"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "candidate",
+            "rejected",
+            "expired",
+            "conflict"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updated_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "expires_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

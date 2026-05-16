@@ -1,0 +1,6 @@
+{
+  "job_status": "REQUIRES_APPROVAL",
+  "permission_level": "execute",
+  "risks_non_empty": true,
+  "forbidden_actions_non_empty": true
+}

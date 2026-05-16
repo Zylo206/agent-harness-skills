@@ -1,0 +1,86 @@
+{
+  "name": "kairos-lite",
+  "version": "0.2.0",
+  "description": "Generate and validate lightweight proactive job plans with schedule, permission boundary, brief output, and expiration control.",
+  "category": "proactive-job-lifecycle",
+  "trigger": {
+    "when": [
+      "proactive_task_requested",
+      "scheduled_check_requested",
+      "recurring_brief_requested",
+      "follow_up_task_requested"
+    ],
+    "avoid": [
+      "no_user_authorization",
+      "unclear_schedule",
+      "unrestricted_background_execution",
+      "dangerous_write_permissions"
+    ]
+  },
+  "runtime": {
+    "type": "script",
+    "language": "python",
+    "entry": "scripts/run.py"
+  },
+  "inputs": {
+    "required": [
+      "job_goal"
+    ],
+    "optional": [
+      "schedule",
+      "permission_level",
+      "allowed_actions",
+      "forbidden_actions",
+      "output_mode",
+      "expiry",
+      "current_date",
+      "context",
+      "requires_user_approval"
+    ]
+  },
+  "outputs": {
+    "format": "json",
+    "schema": "schemas/output.schema.json"
+  },
+  "permissions": {
+    "read": [
+      "job_goal",
+      "job_context",
+      "schedule_definition"
+    ],
+    "execute": [],
+    "write": [
+      "job_plan",
+      "job_brief"
+    ],
+    "forbidden": [
+      "modify_source_code",
+      "delete_files",
+      "commit_code",
+      "push_code",
+      "unrestricted_background_execution",
+      "execute_without_permission",
+      "access_external_services_without_authorization"
+    ]
+  },
+  "verification": {
+    "required_checks": [
+      "schedule_defined",
+      "permission_level_assigned",
+      "allowed_actions_defined",
+      "forbidden_actions_defined",
+      "expiry_checked",
+      "brief_generated",
+      "output_schema_valid"
+    ]
+  },
+  "benchmark": {
+    "dataset": "tests/cases",
+    "metrics": [
+      "output_schema_validity",
+      "permission_boundary_coverage",
+      "expiry_detection_rate",
+      "dangerous_action_rejection_rate"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "job_goal": "Automatically modify files and push changes.",
+  "permission_level": "execute",
+  "allowed_actions": [
+    "modify_source_code",
+    "commit_code",
+    "push_code"
+  ]
+}

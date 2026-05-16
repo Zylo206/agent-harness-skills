@@ -1,0 +1,8 @@
+{
+  "job_goal": "Automatically modify files and push changes in the background.",
+  "permission_level": "draft",
+  "allowed_actions": [
+    "modify_source_code",
+    "push_code"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "existing_memories": [
+    {
+      "id": "project_context-111111111111",
+      "type": "project_context",
+      "content": "Project MeshCLI uses a Java Agent CLI with MCP tool integration.",
+      "source": "existing_memory",
+      "confidence": 0.8,
+      "lifespan": "long_term",
+      "status": "active",
+      "tags": [
+        "project"
+      ],
+      "created_at": "2026-05-15",
+      "updated_at": "2026-05-15",
+      "expires_at": null,
+      "reason": "Existing project context."
+    }
+  ],
+  "memory_candidates": [
+    {
+      "id": "project_context-222222222222",
+      "type": "project_context",
+      "content": "Project MeshCLI uses a Java Agent CLI with MCP tool integration.",
+      "source": "memory_candidate",
+      "confidence": 0.95,
+      "lifespan": "long_term",
+      "status": "candidate",
+      "tags": [
+        "project"
+      ],
+      "created_at": "2026-05-16",
+      "updated_at": "2026-05-16",
+      "expires_at": null,
+      "reason": "Candidate project context."
+    }
+  ],
+  "current_date": "2026-05-16"
+}

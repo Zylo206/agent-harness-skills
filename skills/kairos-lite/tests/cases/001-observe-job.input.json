@@ -1,0 +1,11 @@
+{
+  "job_goal": "Check repository status every Friday and produce a short brief.",
+  "permission_level": "observe",
+  "schedule": {
+    "type": "recurring",
+    "value": "weekly:friday"
+  },
+  "output_mode": "brief",
+  "expiry": "2026-12-31",
+  "current_date": "2026-05-16"
+}

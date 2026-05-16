@@ -1,0 +1,23 @@
+{
+  "conversation": [
+    {
+      "role": "user",
+      "content": "Please compress the session into a task snapshot."
+    },
+    {
+      "role": "assistant",
+      "content": "I tried to summarize without preserving user constraints."
+    },
+    {
+      "role": "assistant",
+      "content": "I also attempted to modify source files during compression, but that was rejected."
+    }
+  ],
+  "failed_attempts": [
+    "Tried to summarize without preserving user constraints.",
+    "Tried to modify source files during compression."
+  ],
+  "pending_tasks": [
+    "Preserve the required structure and continue with a read-only snapshot."
+  ]
+}

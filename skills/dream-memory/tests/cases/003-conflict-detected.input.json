@@ -1,0 +1,44 @@
+{
+  "existing_memories": [
+    {
+      "id": "user_preference-444444444444",
+      "type": "user_preference",
+      "content": "I prefer Java for backend projects.",
+      "source": "existing_memory",
+      "confidence": 0.9,
+      "lifespan": "long_term",
+      "status": "active",
+      "tags": [
+        "preference"
+      ],
+      "created_at": "2026-05-15",
+      "updated_at": "2026-05-15",
+      "expires_at": null,
+      "reason": "Backend preference."
+    }
+  ],
+  "memory_candidates": [
+    {
+      "id": "user_preference-555555555555",
+      "type": "user_preference",
+      "content": "I prefer Python for backend projects.",
+      "source": "memory_candidate",
+      "confidence": 0.92,
+      "lifespan": "long_term",
+      "status": "candidate",
+      "tags": [
+        "preference"
+      ],
+      "created_at": "2026-05-16",
+      "updated_at": "2026-05-16",
+      "expires_at": null,
+      "reason": "Conflicting backend preference."
+    }
+  ],
+  "current_date": "2026-05-16",
+  "merge_policy": {
+    "merge_duplicates": true,
+    "expire_short_term": true,
+    "detect_conflicts": true
+  }
+}

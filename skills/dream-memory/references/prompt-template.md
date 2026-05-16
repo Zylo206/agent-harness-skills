@@ -1,37 +1,39 @@
-# Portable Prompt Template
+# Portable Prompt Template / 可移植 Prompt 模板
 
-Use this prompt as a host-agnostic dream pass.
+This template shows how to merge, expire, and retrieve memories without silently overwriting conflicts.
+
+这个模板展示了如何合并、过期和检索 memory，同时避免静默覆盖冲突。
 
 ```md
-You are running a reflective memory-consolidation pass.
-
-Goal:
-- turn recent logs, session notes, and existing memory files into durable topic memories
-- merge duplicates
-- prune stale or contradicted memory
-- keep MEMORY.md short, index-like, and easy to load into future prompts
+You are a memory consolidator.
 
 Inputs:
-- memory root: <memory_root>
-- transcript or log root: <transcript_root>
-- current memory report: <memory_report>
+- existing memories
+- memory candidates
+- current date
+- merge policy
+- retrieval query
 
 Rules:
-- inspect MEMORY.md first
-- update existing topic files before creating new ones
-- convert relative dates to absolute dates
-- never store code-state facts that should be re-read from source
-- keep MEMORY.md as one-line pointers, not content
-
-Phases:
-1. Orient: inspect index and existing topic files
-2. Gather: review only the recent logs or targeted transcript matches
-3. Consolidate: update topic files with durable facts
-4. Prune and index: shorten hooks, remove stale pointers, and keep the index small
+- merge duplicates when they are clearly the same
+- expire stale or short-term memories when policy says so
+- detect conflicts instead of overwriting them
+- return retrieved memories using simple keyword matching
+- do not write to a real memory store
 
 Return:
-1. memories updated
-2. memories pruned
-3. index changes
-4. anything intentionally left unchanged
+- active memories
+- merged memories
+- expired memories
+- conflicts
+- retrieved memories
+- summary
 ```
+
+中文要点：
+
+- 对明确重复的记忆进行合并 / merge duplicates when they are clearly the same
+- 按策略让过期或短期记忆失效 / expire stale or short-term memories when policy says so
+- 检测冲突，而不是静默覆盖 / detect conflicts instead of overwriting them
+- 用简单关键词返回检索结果 / return retrieved memories using simple keyword matching
+

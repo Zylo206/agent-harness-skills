@@ -1,0 +1,8 @@
+{
+  "job_goal_non_empty": true,
+  "job_plan_non_empty": true,
+  "brief_non_empty": true,
+  "permission_level": "observe",
+  "execution_mode": "plan_only",
+  "is_expired": false
+}

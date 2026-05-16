@@ -1,0 +1,76 @@
+{
+  "name": "memory-extractor",
+  "version": "0.2.0",
+  "description": "Extract, classify, and validate candidate memories from conversations and task notes.",
+  "category": "memory-lifecycle",
+  "trigger": {
+    "when": [
+      "after_user_preference_detected",
+      "after_project_context_detected",
+      "before_memory_write",
+      "before_session_end"
+    ],
+    "avoid": [
+      "pure_code_generation_without_user_preference",
+      "short_lived_task_state_only",
+      "sensitive_personal_data_without_explicit_request"
+    ]
+  },
+  "runtime": {
+    "type": "script",
+    "language": "python",
+    "entry": "scripts/run.py"
+  },
+  "inputs": {
+    "required": [
+      "conversation"
+    ],
+    "optional": [
+      "task_notes",
+      "existing_memories",
+      "extraction_policy",
+      "current_date"
+    ]
+  },
+  "outputs": {
+    "format": "json",
+    "schema": "schemas/output.schema.json"
+  },
+  "permissions": {
+    "read": [
+      "conversation_history",
+      "task_notes",
+      "existing_memories"
+    ],
+    "execute": [],
+    "write": [
+      "memory_candidates"
+    ],
+    "forbidden": [
+      "modify_source_code",
+      "delete_files",
+      "commit_code",
+      "push_code",
+      "store_sensitive_data_without_explicit_request"
+    ]
+  },
+  "verification": {
+    "required_checks": [
+      "candidates_extracted",
+      "memory_types_assigned",
+      "confidence_assigned",
+      "lifespan_assigned",
+      "rejection_reason_assigned",
+      "output_schema_valid"
+    ]
+  },
+  "benchmark": {
+    "dataset": "tests/cases",
+    "metrics": [
+      "output_schema_validity",
+      "preference_extraction_rate",
+      "temporary_state_rejection_rate",
+      "classification_accuracy"
+    ]
+  }
+}

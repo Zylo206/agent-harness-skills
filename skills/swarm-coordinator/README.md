@@ -1,37 +1,79 @@
-# CC Swarm Coordinator
+# swarm-coordinator / 多 Agent 协调器
 
-`swarm-coordinator` is a portable multi-agent coordination skill for tasks that are too large or too noisy for one monolithic agent loop.
+`swarm-coordinator` is the coordination lifecycle sample for this repository.
 
-It keeps a coordinator focused on planning and synthesis while bounded workers handle research, implementation, and verification. The skill packages the organizational pattern, not a host-specific swarm runtime.
+`swarm-coordinator` 是本仓库的 coordination lifecycle 样例。
 
-## Best For
+It generates a structured multi-agent task plan with bounded workers, handoff rules, acceptance criteria, and a verification plan. It does not actually launch parallel agents.
 
-- broad codebase exploration
-- cross-file bug hunts
-- parallel review or research passes
-- tasks that need explicit synthesis before implementation
+它会生成结构化的多 Agent 任务计划，包括有边界的 worker、交接规则、验收标准和验证计划，但不会真的启动并行 agent。
 
-## Included Files
+## Output Shape / 输出结构
 
-- `SKILL.md`
-- `references/prompt-template.md`
-- `references/source-notes.md`
-- `scripts/task_board.py`
+The runtime emits JSON with:
 
-## Quick Start
-
-```bash
-python3 ./scripts/task_board.py \
-  --goal "Investigate flaky CI failure" \
-  --worker research \
-  --worker implementation \
-  --worker verification
+```json
+{
+  "goal": "",
+  "task_state": "PLANNED",
+  "workers": [],
+  "handoff_rules": [],
+  "shared_context": [],
+  "acceptance_criteria": [],
+  "verification_required": true,
+  "verification_plan": [],
+  "risks": [],
+  "next_step": ""
+}
 ```
 
-Then use the coordinator workflow from `SKILL.md`.
+runtime 输出的 JSON 包含：
 
-## Host Fit
+```json
+{
+  "goal": "",
+  "task_state": "PLANNED",
+  "workers": [],
+  "handoff_rules": [],
+  "shared_context": [],
+  "acceptance_criteria": [],
+  "verification_required": true,
+  "verification_plan": [],
+  "risks": [],
+  "next_step": ""
+}
+```
 
-- Claude Code: strong fit
-- Codex: strong fit
-- OpenClaw: good fit for lightweight or manually coordinated swarms
+## Usage / 使用方式
+
+Single run:
+
+```powershell
+python tools/skill_runner.py skills/swarm-coordinator skills/swarm-coordinator/tests/cases/001-basic-plan.input.json
+```
+
+单个运行：
+
+```powershell
+python tools/skill_runner.py skills/swarm-coordinator skills/swarm-coordinator/tests/cases/001-basic-plan.input.json
+```
+
+Batch tests:
+
+```powershell
+python tools/run_skill_tests.py skills/swarm-coordinator
+```
+
+批量测试：
+
+```powershell
+python tools/run_skill_tests.py skills/swarm-coordinator
+```
+
+## Safety Boundary / 安全边界
+
+- keep worker plans bounded / 保持 worker 计划有边界
+- keep handoff rules explicit / 保持交接规则明确
+- do not execute shell commands / 不执行 shell 命令
+- do not modify source code / 不修改源码
+

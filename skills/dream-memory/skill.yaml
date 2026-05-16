@@ -1,0 +1,73 @@
+{
+  "name": "dream-memory",
+  "version": "0.2.0",
+  "description": "Consolidate memory candidates and existing memories by merging duplicates, expiring stale items, and detecting conflicts.",
+  "category": "memory-lifecycle",
+  "trigger": {
+    "when": [
+      "before_memory_store_update",
+      "after_memory_candidates_extracted",
+      "scheduled_memory_cleanup",
+      "before_session_resume"
+    ],
+    "avoid": [
+      "no_existing_or_candidate_memories",
+      "pure_code_generation_task"
+    ]
+  },
+  "runtime": {
+    "type": "script",
+    "language": "python",
+    "entry": "scripts/run.py"
+  },
+  "inputs": {
+    "required": [
+      "existing_memories",
+      "memory_candidates"
+    ],
+    "optional": [
+      "current_date",
+      "merge_policy",
+      "retrieval_query"
+    ]
+  },
+  "outputs": {
+    "format": "json",
+    "schema": "schemas/output.schema.json"
+  },
+  "permissions": {
+    "read": [
+      "existing_memories",
+      "memory_candidates"
+    ],
+    "execute": [],
+    "write": [
+      "consolidated_memory_plan"
+    ],
+    "forbidden": [
+      "modify_source_code",
+      "delete_files",
+      "commit_code",
+      "push_code",
+      "write_memory_store_without_user_approval"
+    ]
+  },
+  "verification": {
+    "required_checks": [
+      "duplicates_detected",
+      "stale_items_expired",
+      "conflicts_detected",
+      "active_memories_returned",
+      "output_schema_valid"
+    ]
+  },
+  "benchmark": {
+    "dataset": "tests/cases",
+    "metrics": [
+      "output_schema_validity",
+      "duplicate_merge_rate",
+      "stale_memory_expiration_rate",
+      "conflict_detection_rate"
+    ]
+  }
+}

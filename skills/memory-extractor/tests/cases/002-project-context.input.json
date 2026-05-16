@@ -1,0 +1,8 @@
+{
+  "conversation": [
+    {
+      "role": "user",
+      "content": "我的项目叫 MeshCLI，是一个 Java Agent CLI，支持 MCP 工具接入。"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "existing_memories": [
+    {
+      "id": "temporary_state-333333333333",
+      "type": "temporary_state",
+      "content": "I am currently running the first test.",
+      "source": "existing_memory",
+      "confidence": 0.6,
+      "lifespan": "short_term",
+      "status": "active",
+      "tags": [
+        "temporary"
+      ],
+      "created_at": "2026-05-14",
+      "updated_at": "2026-05-14",
+      "expires_at": "2026-05-15",
+      "reason": "Short-lived execution state."
+    }
+  ],
+  "memory_candidates": [],
+  "current_date": "2026-05-16",
+  "merge_policy": {
+    "merge_duplicates": true,
+    "expire_short_term": true,
+    "detect_conflicts": true
+  }
+}

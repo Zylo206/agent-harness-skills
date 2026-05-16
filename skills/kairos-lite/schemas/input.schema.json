@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "job_goal"
+  ],
+  "properties": {
+    "job_goal": {
+      "type": "string"
+    },
+    "schedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "one_time",
+            "recurring",
+            "manual"
+          ]
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "permission_level": {
+      "type": "string",
+      "enum": [
+        "observe",
+        "suggest",
+        "draft",
+        "execute"
+      ],
+      "default": "observe"
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "output_mode": {
+      "type": "string",
+      "enum": [
+        "brief",
+        "checklist",
+        "report",
+        "alert"
+      ],
+      "default": "brief"
+    },
+    "expiry": {
+      "type": "string"
+    },
+    "current_date": {
+      "type": "string"
+    },
+    "context": {
+      "type": "string"
+    },
+    "requires_user_approval": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}
